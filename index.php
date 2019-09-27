@@ -60,3 +60,4 @@ class WCM_Main{
 new WCM_Main;
 require_once(dirname( __FILE__ ) . '/script-class.php' );
 require_once(dirname( __FILE__ ) . '/admin/FormClass/WCM_FormMain.php' );
+//require_once(dirname( __FILE__ ) . '/admin/FormClass/WCM_FormMainAjax.php' );
