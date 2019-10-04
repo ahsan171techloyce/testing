@@ -27,11 +27,12 @@ jQuery( function() {
            var counter=jQuery('#couter-check').val();
             var current_type=jQuery(event.target).attr('field-type');
             if(current_type==='Text'){
+                var random = Math.floor(Math.random() * 99999999) + 1; 
                 var html='<div class="main-field-content" id="parent-'+counter+'">\n\
                             <div class="main-title"><span class="label-txt-area">'+current_type+'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>\n\
                             <div class="fields-layout">\n\
                                 <div class="field-label field-group"><label>Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'+counter+'" name="field_data_array['+counter+'][field_label]" placeholder="Field label"></div>\n\
-                                <div class="field-name field-group"><label>Enter Field Name</label><input type="text" name="field_data_array['+counter+'][field_name]" placeholder="Enter Field Name"></div>\n\
+                                <div class="field-name field-group"><label>Enter Field Name</label><input type="text" name="field_data_array['+counter+'][field_name]" value="field_'+counter+'_'+random+'" placeholder="Enter Field Name"></div>\n\
                                 <div class="field-required field-group"><input type="checkbox" name="field_data_array['+counter+'][check_required]" value="1" ></div>\n\
                                 <div class="field-required field-group"><input type="text" name="field_data_array['+counter+'][field_message]" placeholder="Enter error message"></div></div>\n\
                         </div>';
@@ -85,4 +86,7 @@ function label_field_value(obj){
     var parentID=obj.getAttribute('data-parent');
     jQuery('#'+parentID+' .label-txt-area').text(obj.value);
 }
-
+function open_media_window() {
+    wp.media.editor.insert('this is testing here');
+        
+}
