@@ -82,11 +82,6 @@ class WCM_FormMain{
         $field_data_array=get_post_meta($post->ID,'field_data_array',true);
         $counter=get_post_meta($post->ID,'counter',true);
         $field_data_array=maybe_unserialize($field_data_array);
-//        echo '<pre>';
-//        print_r($field_data_array);
-//         echo '</pre>';
-        //die;
-        /// Use nonce for verification to secure data sending
         wp_nonce_field( basename( __FILE__ ), 'wcm_form_nonce' );
         $OptionList_obj=new WCM_OptionList;
         $OptionList_obj_dragable=$OptionList_obj->WCM_form_menu_dragable_option_array();
@@ -112,13 +107,12 @@ class WCM_FormMain{
                 $html.='</div>';
                 
                 $html.='<div class="wcm-formbox wcm-form-layout-right">';
+						$html.='<h3 class="text-center">'.apply_filters( 'change_admin_form_fields_right_main_title', 'Dragable Fields' ).'</h3>';
                         $html.='<ul class="list-field">';
                                     $html.='<li>';
                                         $html.='<ol class="field_type">';
-                                            foreach($OptionList_obj_dragable as $single_item){
-
+                                            foreach($OptionList_obj_dragable['Dragable Fields'] as $single_item){
                                                 $html.='<li class="draggable"  field-type="'.$single_item.'">'.$single_item.'</li>';
-
                                             }
                                         $html.='</ol>';
                                 $html.='</li>';

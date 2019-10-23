@@ -114,8 +114,8 @@
     float: left;
     width: 100%;
     background: #D2E0EB;
-    padding: 5px 13px 5px;
-    border-radius: 5px;
+    padding: 12px 13px 12px;
+    border-radius: 0px;
 }
 .wcm-form-layout-left .ui-sortable li:first-child{
 	margin-top:0px;
@@ -141,6 +141,7 @@
 .wcm-form-layout-left .main-field-content label{
     padding: 0px 0px 5px;
     float: left;
+	width: 100%;
 }
 .wcm-form-layout-left .main-field-content input select,
 .wcm-form-layout-left .main-field-content input[type="text"]{
@@ -163,4 +164,34 @@ div#WCM_form_html_structure_create_area,
 div#WCM_form_create_area {
     float: left;
     width: 100%;
+}
+.text-center{
+	text-align:center;
+}
+.full-width{
+	float:left;
+	width:100%;
+}
+.f-b-600{
+	font-weight: 600;
+}
+.wcm-form-layout-left .optional-fields-area {
+    display: flex;
+    margin-bottom: 10px;
+}
+.wcm-form-layout-left .field-option-name {
+    margin: 0px 10px 0px 0px;
+}
+.wcm-form-layout-left .field-option-add-remove span {
+    font-size: 29px;
+    font-weight: 700;
+    line-height: 20px;
+    cursor: pointer;
+    padding: 0px 0px 0px 8px;
+}
+.wcm-form-layout-left .field-option-add-remove span:first-child{
+    color: #0073aa;
+}
+.wcm-form-layout-left .field-option-add-remove span:last-child{
+    color: #f00;
 }

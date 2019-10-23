@@ -7,10 +7,18 @@ class WCM_OptionList{
     */
     public function WCM_form_menu_dragable_option_array() {
             return array(
-                    'Text',
-                    'Date',
-                    'Phone',
-                    'Email'
+                    'Dragable Fields' => 
+					array(
+						'Text',
+						'Paragraph Text',
+						'Drop Down',
+						'Multi Select',
+						'Number',
+						'Checkboxes',
+						'Radio Buttons',
+						'Hidden',
+						'HTML'
+					)
 
 
             );
@@ -19,7 +27,8 @@ class WCM_OptionList{
 
 
 }
-new WCM_OptionList;
+
+
 
 
  
