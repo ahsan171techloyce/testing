@@ -33,10 +33,11 @@ jQuery( function() {
                             <div class="fields-layout">\n\
                                 <div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'+counter+'" name="field_data_array['+counter+'][field_label]" placeholder="Field label"></div>\n\
                                 <div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['+counter+'][field_name]" value="field_'+counter+'_'+random+'" placeholder="Enter Field Name"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">Required</label> <input type="checkbox" name="field_data_array['+counter+'][check_required]" value="1" > </div>\n\
-                                <div class="field-required field-group"><input type="text" name="field_data_array['+counter+'][field_message]" placeholder="Enter error message"></div>\n\
-				<div class="field-required field-group"><input type="hidden" name="field_data_array['+counter+'][field_type]" value="Text"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">Default Value</label><input type="text" class="full-width"></div></div>\n\
+                                <div class="field-required field-group"><label class="f-b-600">Error Message(Optional)</label><input type="text" name="field_data_array['+counter+'][field_message]" placeholder="Enter error message"></div>\n\
+                                <div class="field-required field-group"><label class="f-b-600">Valid Regular Expresion(Optional)</label><input type="text" name="field_data_array['+counter+'][field_exp]" placeholder="Valid Regular Expresion"></div>\n\
+                                <div class="field-required field-group"><label class="f-b-600">Default Value(Optional)</label><input type="text" placeholder="Default Value" class="full-width"></div>\n\
+                                <div class="field-required field-group"><label class="f-b-600">Required(Optional)</label> <input type="checkbox" name="field_data_array['+counter+'][check_required]" value="1" > </div>\n\
+                                <div class="field-required field-group"><input type="hidden" name="field_data_array['+counter+'][field_type]" value="Text"></div></div>\n\
                         </div>';
                 return jQuery(html);
             }
