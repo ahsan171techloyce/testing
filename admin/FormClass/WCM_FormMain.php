@@ -130,8 +130,10 @@ class WCM_FormMain{
     }
     public function WCM_create_form_meta_box_save_postdata($post_id){
         
-    
-        if (array_key_exists('wcm_form_nonce', $_POST)) {
+		// echo '<pre>';
+		// print_r($_POST['field_data_array']);
+		// die;
+		if (array_key_exists('wcm_form_nonce', $_POST)) {
            $couter= $_POST['counter'];
            $field_data_array=$_POST['field_data_array'];
            update_post_meta($post_id,'field_data_array',maybe_serialize($field_data_array));

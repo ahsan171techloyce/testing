@@ -31,7 +31,7 @@
     margin-bottom: 20px;
     margin-top: 10px;
     position: relative;
-    overflow: hidden;
+
 }
 .wcm-formbox.wcm-form-layout-right .list-field ol li {
 	display: inline-block;
@@ -154,6 +154,7 @@
     height: auto!important;
     float: left;
     margin-bottom: 10px;
+	box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.6)
 }
 .wcm-form-layout-left .main-field-content .field-group {
     float: left;
