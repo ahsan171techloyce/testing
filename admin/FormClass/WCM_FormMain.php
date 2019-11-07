@@ -80,11 +80,15 @@ class WCM_FormMain{
     function show_WCM_create_form_meta_box() {
         global $post;
         $field_data_array=get_post_meta($post->ID,'field_data_array',true);
+		
         $counter=get_post_meta($post->ID,'counter',true);
+		// echo '<pre>';
+		// print_r(maybe_unserialize($field_data_array));
+		// die;
         $field_data_array=maybe_unserialize($field_data_array);
         wp_nonce_field( basename( __FILE__ ), 'wcm_form_nonce' );
-        $OptionList_obj=new WCM_OptionList;
-        $OptionList_obj_dragable=$OptionList_obj->WCM_form_menu_dragable_option_array();
+        //$OptionList_obj=new WCM_OptionList;
+        $OptionList_obj_dragable=WCM_OptionList::WCM_form_menu_dragable_option_array();
 
         $html.='<div class="wcm-form-layout">';
                 $html.='<div class="wcm-formbox wcm-form-layout-left">';
@@ -92,15 +96,222 @@ class WCM_FormMain{
                              $html.='<input type="hidden" name="counter" id="couter-check" value="'.(!empty($counter) ? $counter : '0').'">';
                                 if(!empty($field_data_array)){
                                     foreach($field_data_array as $key => $value){
-                                    $html.='<div class="main-field-content" id="parent-'.(!empty($key) ? $key : '0').'">
-                                                <div class="main-title"><span class="label-txt-area">'.(!empty($value['field_label']) ? $value['field_label'] : 'Label '.$key).'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>
-                                                <div class="fields-layout">
-                                                    <div class="field-label field-group"><label>Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'.$key.'" name="field_data_array['.$key.'][field_label]" value="'.$value['field_label'].'" placeholder="Field label"></div>
-                                                    <div class="field-name field-group"><label>Enter Field Name</label><input type="text" name="field_data_array['.$key.'][field_name]" value="'.$value['field_name'].'" placeholder="Enter Field Name"></div>
-                                                    <div class="field-required field-group"><input type="checkbox" name="field_data_array['.$key.'][check_required]" value="1" '.(!empty($value['check_required']) && $value['check_required']==1  ? 'checked' : '').'></div>
-                                                    <div class="field-required field-group"><input type="text" name="field_data_array['.$key.'][field_message]" value="'.$value['field_message'].'" placeholder="Enter error message"></div>
-                                                 </div>
-                                         </div>';
+										$counter=$key;
+										$randon_number=rand(1,999999);
+										$randon_number2=rand(10000,999999);
+										switch ($value['field_type']) {
+											case "Text":
+												$html.='<div class="main-field-content" id="parent-'.$counter.'">
+												<div class="main-title"><span class="label-txt-area">'.$value['field_label'].'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>
+												<div class="fields-layout full-width">
+													<div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'.$counter.'" name="field_data_array['.$counter.'][field_label]" placeholder="Field label" value="'.$value['field_label'].'"></div>
+													<div class="tabs-list full-width">
+														<div class="tab-nav full-width">
+															<ul class="full-width">
+																<li><a href="#" class="active show-hide" data-pid="parent-'.$counter.'" data-id="'.$randon_number.'-'. $key.'">Setting</a></li>
+																<li><a href="#" class="show-hide" data-pid="parent-'.$counter.'" data-id="'.$randon_number2.'-'. $key.'">Advance Setting</a></li>
+															</ul>
+														</div>
+													</div>
+													<div class="settingsp full-width setting-'.$randon_number.'-'. $key.'">
+														<div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['.$counter.'][field_name]" value="'.$value['field_name'].'" placeholder="Enter Field Name"></div>
+														<div class="field-required field-group"><label class="f-b-600">Error Message(Optional)</label><input type="text" name="field_data_array['.$counter.'][field_message]" value="'.$value['field_message'].'" placeholder="Enter error message"></div>
+														<div class="field-required field-group"><label class="f-b-600">Required(Optional)</label> <input type="checkbox" name="field_data_array['.$counter.'][check_required]" value="1" '.($value['check_required']==1 ? 'checked' : '').'> </div>
+													</div>
+													<div class="settingsp full-width setting-'.$randon_number2.'-'. $key.' hide">
+														<div class="field-required field-group"><label class="f-b-600">Valid Regular Expresion(Optional)</label><input type="text" name="field_data_array['.$counter.'][field_exp]" value="'.$value['field_exp'].'" placeholder="Valid Regular Expresion"></div>
+														<div class="field-required field-group"><label class="f-b-600">Default Value(Optional)</label><input type="text" placeholder="Default Value" name="field_data_array['.$counter.'][field_default_val]" value="'.$value['field_default_val'].'" class="full-width"></div>
+														<div class="field-required field-group"><label class="f-b-600">Character Lenght(Optional)</label> <input type="text" name="field_data_array['.$counter.'][character_lenght]" value="'.$value['character_lenght'].'"> </div>
+														<div class="field-required field-group"><input type="hidden" name="field_data_array['.$counter.'][field_type]" value="Text"></div>
+													</div>
+												</div>
+											</div>';
+											break;
+											case "Paragraph Text":
+												$html.='<div class="main-field-content" id="parent-'.$counter.'">
+													<div class="main-title"><span class="label-txt-area">'.$value['field_label'].'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>
+													<div class="fields-layout">
+														<div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'.$counter.'" name="field_data_array['.$counter.'][field_label]" placeholder="Field label" value="'.$value['field_label'].'"></div>
+														<div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['.$counter.'][field_name]" value="'.$value['field_name'].'" placeholder="Enter Field Name"></div>
+														<div class="field-required field-group"><input type="hidden" name="field_data_array['.$counter.'][field_type]" value="Paragraph Text"></div>
+														<div class="field-required field-group"><label class="f-b-600">Error Message(Optional)</label><input type="text" name="field_data_array['.$counter.'][field_message]" value="'.$value['field_message'].'" placeholder="Enter error message"></div>
+														<div class="field-required field-group"><label class="f-b-600">Character Lenght(Optional)</label> <input type="text" name="field_data_array['.$counter.'][character_lenght]" value="'.$value['character_lenght'].'"> </div>
+														<div class="field-required field-group"><label class="f-b-600">Required(Optional)</label><input type="checkbox" name="field_data_array['.$counter.'][check_required]" value="1" '.($value['check_required']==1 ? 'checked' : '').'></div>
+														<div class="field-required field-group"><label class="f-b-600">Default Value</label><textarea name="field_data_array['.$counter.'][field_default_val]" class="full-width" >'.$value['field_default_val'].'</textarea></div></div>
+													</div>';
+											break;
+											case "Drop Down":
+												$dropdown='';
+												if(count($value['field_option']) > 0):
+													foreach($value['field_option'] as $keydropdown => $dropdown_value):
+														$dropdown.='<div class="optional-fields-area">
+															<div class="field-option-name"><input type="text" placeholder="Enter Option Name" name="field_data_array['.$counter.'][field_option]['.$keydropdown .'][option_name]" value="'.$dropdown_value['option_name'].'"></div>
+															<div class="field-option-val"><input type="text" placeholder="Enter Option Value" name="field_data_array['.$counter.'][field_option]['.$keydropdown .'][option_value]"  value="'.$dropdown_value['option_value'].'"></div>
+															<div class="field-option-add-remove"><span class="wcm_add-option" data-mparent="parent-'.$counter.'" data-append="append-fields-option" data-counter="'.$counter.'" data-type="dropdown" data-counter="'.$counter.'">+</span><span data-mparent="parent-'.$counter.'" data-append="append-fields-option" data-type="dropdown" class="wcm_remove-option" style="visibility:visible">-</span></div>
+														</div>';
+													endforeach;
+													else:
+														$dropdown.='<div class="optional-fields-area">
+															<div class="field-option-name"><input type="text" placeholder="Enter Option Name" name="field_data_array['.$counter.'][field_option]['.$keydropdown .'][option_name]" ></div>
+															<div class="field-option-val"><input type="text" placeholder="Enter Option Value" name="field_data_array['.$counter.'][field_option]['.$keydropdown .'][option_value]" ></div>
+															<div class="field-option-add-remove"><span class="wcm_add-option" data-mparent="parent-'.$counter.'" data-append="append-fields-option" data-counter="'.$counter.'" data-type="dropdown" data-counter="'.$counter.'">+</span><span data-mparent="parent-'.$counter.'" data-append="append-fields-option" data-type="dropdown" class="wcm_remove-option" style="visibility:visible">-</span></div>
+														</div>';
+												endif;
+												$html.='<div class="main-field-content" id="parent-'.$counter.'">
+															<div class="main-title"><span class="label-txt-area">'.$value['field_label'].'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>
+															<div class="fields-layout">
+																<div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'.$counter.'" name="field_data_array['.$counter.'][field_label]" placeholder="Field label" value="'.$value['field_label'].'"></div>
+																<div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['.$counter.'][field_name]" value="'.$value['field_name'].'" placeholder="Enter Field Name"></div>
+																<div class="field-required field-group"><label class="f-b-600">Error Message(Optional)</label><input type="text" name="field_data_array['.$counter.'][field_message]" value="'.$value['field_message'].'" placeholder="Enter error message"></div>
+																<div class="field-required field-group"><input type="hidden" name="field_data_array['.$counter.'][field_type]" value="Drop Down"></div>
+																<div class="field-required field-group"><input type="hidden" name="field_data_array['.$counter.'][option_counter]" class="option-counter" value="'.$value['option_counter'].'"></div>
+																<div class="field-required field-group"><label class="f-b-600">Required(Optional)</label><input type="checkbox" name="field_data_array['.$counter.'][check_required]" value="1" '.($value['check_required']==1 ? 'checked' : '').'></div>
+																<div class="field-required field-group append-fields-option">'.
+																	$dropdown.'
+																</div>
+															</div>
+														</div>';
+											break;
+											case "Multi Select":
+												$Multidropdown='';
+												if(count($value['field_option']) > 0):
+													foreach($value['field_option'] as $keydropdown => $dropdown_value):
+														$Multidropdown.='<div class="optional-fields-area">
+															<div class="field-option-name"><input type="text" placeholder="Enter Option Name" name="field_data_array['.$counter.'][field_option]['.$keydropdown .'][option_name]" value="'.$dropdown_value['option_name'].'"></div>
+															<div class="field-option-val"><input type="text" placeholder="Enter Option Value" name="field_data_array['.$counter.'][field_option]['.$keydropdown .'][option_value]"  value="'.$dropdown_value['option_value'].'"></div>
+															<div class="field-option-add-remove"><span class="wcm_add-option" data-mparent="parent-'.$counter.'" data-append="append-fields-option" data-counter="'.$counter.'" data-type="dropdown" data-counter="'.$counter.'">+</span><span data-mparent="parent-'.$counter.'" data-append="append-fields-option" data-type="dropdown" class="wcm_remove-option" style="visibility:visible">-</span></div>
+														</div>';
+													endforeach;
+													else:
+														$Multidropdown.='<div class="optional-fields-area">
+															<div class="field-option-name"><input type="text" placeholder="Enter Option Name" name="field_data_array['.$counter.'][field_option]['.$keydropdown .'][option_name]" ></div>
+															<div class="field-option-val"><input type="text" placeholder="Enter Option Value" name="field_data_array['.$counter.'][field_option]['.$keydropdown .'][option_value]" ></div>
+															<div class="field-option-add-remove"><span class="wcm_add-option" data-mparent="parent-'.$counter.'" data-append="append-fields-option" data-counter="'.$counter.'" data-type="dropdown" data-counter="'.$counter.'">+</span><span data-mparent="parent-'.$counter.'" data-append="append-fields-option" data-type="dropdown" class="wcm_remove-option" style="visibility:visible">-</span></div>
+														</div>';
+												endif;
+												$html.='<div class="main-field-content" id="parent-'.$counter.'">
+															<div class="main-title"><span class="label-txt-area">'.$value['field_label'].'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>
+															<div class="fields-layout">
+																<div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'.$counter.'" name="field_data_array['.$counter.'][field_label]" placeholder="Field label" value="'.$value['field_label'].'"></div>
+																<div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['.$counter.'][field_name]" value="'.$value['field_name'].'" placeholder="Enter Field Name"></div>
+																<div class="field-required field-group"><label class="f-b-600">Error Message(Optional)</label><input type="text" name="field_data_array['.$counter.'][field_message]" value="'.$value['field_message'].'" placeholder="Enter error message"></div>
+																<div class="field-required field-group"><input type="hidden" name="field_data_array['.$counter.'][field_type]" value="Multi Select"></div>
+																<div class="field-required field-group"><input type="hidden" name="field_data_array['.$counter.'][option_counter]" class="option-counter" value="'.$value['option_counter'].'"></div>
+																<div class="field-required field-group"><label class="f-b-600">Required(Optional)</label><input type="checkbox" name="field_data_array['.$counter.'][check_required]" value="1" '.($value['check_required']==1 ? 'checked' : '').'></div>
+																<div class="field-required field-group append-fields-option">'.
+																	$Multidropdown.'
+																</div>
+															</div>
+														</div>';
+											break;
+											case "Number":
+												$html.='<div class="main-field-content" id="parent-'.$counter.'">
+															<div class="main-title"><span class="label-txt-area">'.$value['field_label'].'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>
+															<div class="fields-layout">
+																<div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'.$counter.'" name="field_data_array['.$counter.'][field_label]" placeholder="Field label" value="'.$value['field_label'].'"></div>
+																<div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['.$counter.'][field_name]" value="'.$value['field_name'].'" placeholder="Enter Field Name"></div>
+																<div class="field-required field-group"><label class="f-b-600">Error Message(Optional)</label><input type="text" name="field_data_array['.$counter.'][field_message]" value="'.$value['field_message'].'" placeholder="Enter error message"></div>
+																<div class="field-required field-group"><label class="f-b-600">Valid Regular Expresion(Optional)</label><input type="text" name="field_data_array['.$counter.'][field_exp]" value="'.$value['field_exp'].'" placeholder="Valid Regular Expresion"></div>
+																<div class="field-required field-group"><label class="f-b-600">Default Value(Optional)</label><input type="text" placeholder="Default Value" name="field_data_array['.$counter.'][field_default_val]" value="'.$value['field_default_val'].'" class="full-width"></div>
+																<div class="field-required field-group"><label class="f-b-600">Character Lenght(Optional)</label> <input type="text" name="field_data_array['.$counter.'][character_lenght]" value="'.$value['character_lenght'].'"> </div>
+																<div class="field-required field-group"><label class="f-b-600">Required(Optional)</label> <input type="checkbox" name="field_data_array['.$counter.'][check_required]" value="1" '.($value['check_required']==1 ? 'checked' : '').'> </div>
+																<div class="field-required field-group"><input type="hidden" name="field_data_array['.$counter.'][field_type]" value="Number"></div>
+															</div>
+														</div>';
+											break;
+											case "Checkboxes":
+												$Checkboxes='';
+												if(count($value['field_option']) > 0):
+													foreach($value['field_option'] as $keydropdown => $dropdown_value):
+														$Checkboxes.='<div class="optional-fields-area">
+															<div class="field-option-name"><input type="text" placeholder="Enter Label Name" name="field_data_array['.$counter.'][field_option]['.$keydropdown .'][option_name]" value="'.$dropdown_value['option_name'].'"></div>
+															<div class="field-option-val"><input type="text" placeholder="Enter Label Value" name="field_data_array['.$counter.'][field_option]['.$keydropdown .'][option_value]"  value="'.$dropdown_value['option_value'].'"></div>
+															<div class="field-option-add-remove"><span class="wcm_add-option" data-mparent="parent-'.$counter.'" data-append="append-fields-option" data-counter="'.$counter.'" data-type="dropdown" data-counter="'.$counter.'">+</span><span data-mparent="parent-'.$counter.'" data-append="append-fields-option" data-type="dropdown" class="wcm_remove-option" style="visibility:visible">-</span></div>
+														</div>';
+													endforeach;
+													else:
+														$Checkboxes.='<div class="optional-fields-area">
+															<div class="field-option-name"><input type="text" placeholder="Enter Label Name" name="field_data_array['.$counter.'][field_option]['.$keydropdown .'][option_name]" ></div>
+															<div class="field-option-val"><input type="text" placeholder="Enter Label Value" name="field_data_array['.$counter.'][field_option]['.$keydropdown .'][option_value]" ></div>
+															<div class="field-option-add-remove"><span class="wcm_add-option" data-mparent="parent-'.$counter.'" data-append="append-fields-option" data-counter="'.$counter.'" data-type="dropdown" data-counter="'.$counter.'">+</span><span data-mparent="parent-'.$counter.'" data-append="append-fields-option" data-type="dropdown" class="wcm_remove-option" style="visibility:visible">-</span></div>
+														</div>';
+												endif;
+												$html.='<div class="main-field-content" id="parent-'.$counter.'">
+															<div class="main-title"><span class="label-txt-area">'.$value['field_label'].'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>
+															<div class="fields-layout">
+																<div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'.$counter.'" name="field_data_array['.$counter.'][field_label]" placeholder="Field label" value="'.$value['field_label'].'"></div>
+																<div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['.$counter.'][field_name]" value="'.$value['field_name'].'" placeholder="Enter Field Name"></div>
+																<div class="field-required field-group"><label class="f-b-600">Error Message(Optional)</label><input type="text" name="field_data_array['.$counter.'][field_message]" value="'.$value['field_message'].'" placeholder="Enter error message"></div>
+																<div class="field-required field-group"><input type="hidden" name="field_data_array['.$counter.'][field_type]" value="Checkboxes"></div>
+																<div class="field-required field-group"><input type="hidden" name="field_data_array['.$counter.'][option_counter]" class="option-counter" value="'.$value['option_counter'].'"></div>
+																<div class="field-required field-group"><label class="f-b-600">Required(Optional)</label><input type="checkbox" name="field_data_array['.$counter.'][check_required]" value="1" '.($value['check_required']==1 ? 'checked' : '').'></div>
+																<div class="field-required field-group append-fields-option">'.
+																	$Checkboxes.'
+																</div>
+															</div>
+														</div>';
+											break;
+											case "Radio Buttons":
+												$RadioButton='';
+												if(count($value['field_option']) > 0):
+													foreach($value['field_option'] as $keydropdown => $dropdown_value):
+														$RadioButton.='<div class="optional-fields-area">
+															<div class="field-option-name"><input type="text" placeholder="Enter Label Name" name="field_data_array['.$counter.'][field_option]['.$keydropdown .'][option_name]" value="'.$dropdown_value['option_name'].'"></div>
+															<div class="field-option-val"><input type="text" placeholder="Enter Label Value" name="field_data_array['.$counter.'][field_option]['.$keydropdown .'][option_value]"  value="'.$dropdown_value['option_value'].'"></div>
+															<div class="field-option-add-remove"><span class="wcm_add-option" data-mparent="parent-'.$counter.'" data-append="append-fields-option" data-counter="'.$counter.'" data-type="dropdown" data-counter="'.$counter.'">+</span><span data-mparent="parent-'.$counter.'" data-append="append-fields-option" data-type="dropdown" class="wcm_remove-option" style="visibility:visible">-</span></div>
+														</div>';
+													endforeach;
+													else:
+														$RadioButton.='<div class="optional-fields-area">
+															<div class="field-option-name"><input type="text" placeholder="Enter Label Name" name="field_data_array['.$counter.'][field_option]['.$keydropdown .'][option_name]" ></div>
+															<div class="field-option-val"><input type="text" placeholder="Enter Label Value" name="field_data_array['.$counter.'][field_option]['.$keydropdown .'][option_value]" ></div>
+															<div class="field-option-add-remove"><span class="wcm_add-option" data-mparent="parent-'.$counter.'" data-append="append-fields-option" data-counter="'.$counter.'" data-type="dropdown" data-counter="'.$counter.'">+</span><span data-mparent="parent-'.$counter.'" data-append="append-fields-option" data-type="dropdown" class="wcm_remove-option" style="visibility:visible">-</span></div>
+														</div>';
+												endif;
+												$html.='<div class="main-field-content" id="parent-'.$counter.'">
+															<div class="main-title"><span class="label-txt-area">'.$value['field_label'].'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>
+															<div class="fields-layout">
+																<div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'.$counter.'" name="field_data_array['.$counter.'][field_label]" placeholder="Field label" value="'.$value['field_label'].'"></div>
+																<div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['.$counter.'][field_name]" value="'.$value['field_name'].'" placeholder="Enter Field Name"></div>
+																<div class="field-required field-group"><label class="f-b-600">Error Message(Optional)</label><input type="text" name="field_data_array['.$counter.'][field_message]" value="'.$value['field_message'].'" placeholder="Enter error message"></div>
+																<div class="field-required field-group"><input type="hidden" name="field_data_array['.$counter.'][field_type]" value="Radio Buttons"></div>
+																<div class="field-required field-group"><input type="hidden" name="field_data_array['.$counter.'][option_counter]" class="option-counter" value="'.$value['option_counter'].'"></div>
+																<div class="field-required field-group"><label class="f-b-600">Required(Optional)</label><input type="checkbox" name="field_data_array['.$counter.'][check_required]" value="1" '.($value['check_required']==1 ? 'checked' : '').'></div>
+																<div class="field-required field-group append-fields-option">'.
+																	$RadioButton.'
+																</div>
+															</div>
+														</div>';
+											break;
+											case "Hidden":
+												$html.='<div class="main-field-content" id="parent-'.$counter.'">
+															<div class="main-title"><span class="label-txt-area">'.$value['field_label'].'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>
+															<div class="fields-layout">
+																<div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'.$counter.'" name="field_data_array['.$counter.'][field_label]" placeholder="Field label"></div>
+																<div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['.$counter.'][field_name]" value="'.$value['field_name'].'" placeholder="Enter Field Name"></div>
+																<div class="field-required field-group"><label class="f-b-600">Default Value(Optional)</label><input type="text" placeholder="Default Value" name="field_data_array['.$counter.'][field_default_val]" class="full-width"></div>
+																<div class="field-required field-group"><label class="f-b-600">Character Lenght(Optional)</label> <input type="text" name="field_data_array['.$counter.'][character_lenght]"> </div>
+																<div class="field-label field-group"><label class="f-b-600">Enter Parameter(optional)</label><input type="text" class="label-text" data-parent="parent-'.$counter.'" name="field_data_array['.$counter.'][field_dynamic_parameter]" placeholder="Enter Parameter"></div>
+																<div class="field-required field-group"><input type="hidden" name="field_data_array['.$counter.'][field_type]" value="Hidden"></div>
+															</div>
+														</div>';
+											break;
+											case "HTML":
+												$html.='<div class="main-field-content" id="parent-'.$counter.'">
+															<div class="main-title"><span class="label-txt-area">'.$value['field_label'].'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>
+															<div class="fields-layout">
+																<div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'.$counter.'" name="field_data_array['.$counter.'][field_label]" placeholder="Field label"></div>
+																<div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['.$counter.'][field_name]" value="'.$value['field_name'].'" placeholder="Enter Field Name"></div>
+																<div class="field-required field-group"><input type="hidden" name="field_data_array['.$counter.'][field_type]" value="HTML"></div>
+																<div class="field-required field-group"><label class="f-b-600">HTML</label><textarea name="field_data_array['.$counter.'][field_default_val]" class="full-width">'.$value['field_default_val'].'</textarea></div>
+															</div>
+														</div>';
+											break;
+											
+											default:
+												echo "No More fields here";
+										}
+									
                                     }
                                 }
                             $html.='</ul>';	

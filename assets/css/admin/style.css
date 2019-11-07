@@ -18,7 +18,6 @@
     background: #fff;
     padding: 10px 0px 10px;
     /* box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.5); */
-    overflow: hidden;
     position: relative;
     margin: 0px 10px 0px
 
@@ -38,7 +37,7 @@
     float: none;
     width: 38%;
     /* background: #ecebeb; */
-    padding: 10px 10px 10px;
+    padding: 12px 10px 12px;
     color: #555;
     border-color: #ccc;
     background: #f7f7f7;
@@ -97,6 +96,7 @@
 .wcm-form-layout-left .main-title {
     font-size: 16px;
     position: relative;
+	color: #000;
 }
 .wcm-form-layout-left li.ui-draggable-handle {
 	width:332px!important;
@@ -113,7 +113,7 @@
 .wcm-form-layout-left .main-field-content {
     float: left;
     width: 100%;
-    background: #D2E0EB;
+	background: #f1f1f1;
     padding: 12px 13px 12px;
     border-radius: 0px;
 }
@@ -122,6 +122,8 @@
 }
 .wcm-form-layout-right ol{
 	margin:0px;
+	padding: 10px 0px 10px 3px;
+	background: #474b50;
 }
 .wcm-form-layout-left .fields-layout {
     float: left;
@@ -148,13 +150,14 @@
     width:100%!important;
     height: auto!important;
     float: left;
+	min-height: 40px;
 }
 .wcm-form-layout-left .main-field-content{
     width:93%!important;
     height: auto!important;
     float: left;
     margin-bottom: 10px;
-	box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.6)
+	box-shadow:0px 1px 1px 0px rgba(0,0,0,0.6);
 }
 .wcm-form-layout-left .main-field-content .field-group {
     float: left;
@@ -195,4 +198,46 @@ div#WCM_form_create_area {
 }
 .wcm-form-layout-left .field-option-add-remove span:last-child{
     color: #f00;
+}
+.ui-draggable-dragging {
+	background: #D2E0EB !important;
+    width: 134px!important;
+    padding: 10px 10px 10px;
+    color: #555;
+    border-color: #ccc;
+    box-shadow: 0 1px 0 #ccc;
+    vertical-align: top;
+    text-align: center;
+    cursor: move;
+	position:relative;
+	z-index:9999999;
+}
+.main-field-content .tabs-list ul.full-width {
+	display: inline-flex;
+    flex-direction: row;
+    align-items: baseline;
+    margin-bottom: 0px;
+}
+.main-field-content .tabs-list ul li{
+	width: fit-content;
+    color: #fff;
+    list-style-type: none;
+    margin: 0px;
+    padding: 2px;
+}
+.main-field-content .tabs-list ul li a.active{
+	background: #ddd;
+    color: #000;
+}
+.main-field-content .tabs-list ul li a{
+    background: #474b50;
+    padding: 10px 15px 10px;
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #fff;
+}
+.hide{
+	display:none!important;
 }
