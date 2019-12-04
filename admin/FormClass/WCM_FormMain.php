@@ -82,10 +82,11 @@ class WCM_FormMain{
         $field_data_array=get_post_meta($post->ID,'field_data_array',true);
 		
         $counter=get_post_meta($post->ID,'counter',true);
-		// echo '<pre>';
-		// print_r(maybe_unserialize($field_data_array));
-		// die;
+		
         $field_data_array=maybe_unserialize($field_data_array);
+		// echo '<pre>';
+		// print_r($field_data_array);
+		// die;
         wp_nonce_field( basename( __FILE__ ), 'wcm_form_nonce' );
         //$OptionList_obj=new WCM_OptionList;
         $OptionList_obj_dragable=WCM_OptionList::WCM_form_menu_dragable_option_array();
@@ -307,7 +308,139 @@ class WCM_FormMain{
 															</div>
 														</div>';
 											break;
-											
+											case "Phone":
+												$html.='<div class="main-field-content" id="parent-'.$counter.'">
+												<div class="main-title"><span class="label-txt-area">'.$value['field_label'].'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>
+												<div class="fields-layout full-width">
+													<div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'.$counter.'" name="field_data_array['.$counter.'][field_label]" placeholder="Field label" value="'.$value['field_label'].'"></div>
+													<div class="tabs-list full-width">
+														<div class="tab-nav full-width">
+															<ul class="full-width">
+																<li><a href="#" class="active show-hide" data-pid="parent-'.$counter.'" data-id="'.$randon_number.'-'. $key.'">Setting</a></li>
+																<li><a href="#" class="show-hide" data-pid="parent-'.$counter.'" data-id="'.$randon_number2.'-'. $key.'">Advance Setting</a></li>
+															</ul>
+														</div>
+													</div>
+													<div class="settingsp full-width setting-'.$randon_number.'-'. $key.'">
+														<div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['.$counter.'][field_name]" value="'.$value['field_name'].'" placeholder="Enter Field Name"></div>
+														<div class="field-required field-group"><label class="f-b-600">Error Message(Optional)</label><input type="text" name="field_data_array['.$counter.'][field_message]" value="'.$value['field_message'].'" placeholder="Enter error message"></div>
+														<div class="field-required field-group"><label class="f-b-600">Required(Optional)</label> <input type="checkbox" name="field_data_array['.$counter.'][check_required]" value="1" '.($value['check_required']==1 ? 'checked' : '').'> </div>
+													</div>
+													<div class="settingsp full-width setting-'.$randon_number2.'-'. $key.' hide">
+														<div class="field-required field-group"><label class="f-b-600">Valid Regular Expresion(Optional)</label><input type="text" name="field_data_array['.$counter.'][field_exp]" value="'.$value['field_exp'].'" placeholder="Valid Regular Expresion"></div>
+														<div class="field-required field-group"><label class="f-b-600">Default Value(Optional)</label><input type="text" placeholder="Default Value" name="field_data_array['.$counter.'][field_default_val]" value="'.$value['field_default_val'].'" class="full-width"></div>
+														<div class="field-required field-group"><label class="f-b-600">Character Lenght(Optional)</label> <input type="text" name="field_data_array['.$counter.'][character_lenght]" value="'.$value['character_lenght'].'"> </div>
+														<div class="field-required field-group"><input type="hidden" name="field_data_array['.$counter.'][field_type]" value="Phone"></div>
+													</div>
+												</div>
+											</div>';
+											break;
+											case "State":
+												$html.='<div class="main-field-content" id="parent-'.$counter.'">
+												<div class="main-title"><span class="label-txt-area">'.$value['field_label'].'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>
+												<div class="fields-layout full-width">
+													<div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'.$counter.'" name="field_data_array['.$counter.'][field_label]" placeholder="Field label" value="'.$value['field_label'].'"></div>
+													<div class="tabs-list full-width">
+														<div class="tab-nav full-width">
+															<ul class="full-width">
+																<li><a href="#" class="active show-hide" data-pid="parent-'.$counter.'" data-id="'.$randon_number.'-'. $key.'">Setting</a></li>
+																<li><a href="#" class="show-hide" data-pid="parent-'.$counter.'" data-id="'.$randon_number2.'-'. $key.'">Advance Setting</a></li>
+															</ul>
+														</div>
+													</div>
+													<div class="settingsp full-width setting-'.$randon_number.'-'. $key.'">
+														<div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['.$counter.'][field_name]" value="'.$value['field_name'].'" placeholder="Enter Field Name"></div>
+														<div class="field-required field-group"><label class="f-b-600">Error Message(Optional)</label><input type="text" name="field_data_array['.$counter.'][field_message]" value="'.$value['field_message'].'" placeholder="Enter error message"></div>
+														<div class="field-required field-group"><label class="f-b-600">Required(Optional)</label> <input type="checkbox" name="field_data_array['.$counter.'][check_required]" value="1" '.($value['check_required']==1 ? 'checked' : '').'> </div>
+													</div>
+													<div class="settingsp full-width setting-'.$randon_number2.'-'. $key.' hide">
+														<div class="field-required field-group"><label class="f-b-600">Valid Regular Expresion(Optional)</label><input type="text" name="field_data_array['.$counter.'][field_exp]" value="'.$value['field_exp'].'" placeholder="Valid Regular Expresion"></div>
+														<div class="field-required field-group"><label class="f-b-600">Default Value(Optional)</label><input type="text" placeholder="Default Value" name="field_data_array['.$counter.'][field_default_val]" value="'.$value['field_default_val'].'" class="full-width"></div>
+														<div class="field-required field-group"><label class="f-b-600">Character Lenght(Optional)</label> <input type="text" name="field_data_array['.$counter.'][character_lenght]" value="'.$value['character_lenght'].'"> </div>
+														<div class="field-required field-group"><input type="hidden" name="field_data_array['.$counter.'][field_type]" value="State"></div>
+													</div>
+												</div>
+											</div>';
+											break;
+											case "ZipCode":
+												$html.='<div class="main-field-content" id="parent-'.$counter.'">
+												<div class="main-title"><span class="label-txt-area">'.$value['field_label'].'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>
+												<div class="fields-layout full-width">
+													<div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'.$counter.'" name="field_data_array['.$counter.'][field_label]" placeholder="Field label" value="'.$value['field_label'].'"></div>
+													<div class="tabs-list full-width">
+														<div class="tab-nav full-width">
+															<ul class="full-width">
+																<li><a href="#" class="active show-hide" data-pid="parent-'.$counter.'" data-id="'.$randon_number.'-'. $key.'">Setting</a></li>
+																<li><a href="#" class="show-hide" data-pid="parent-'.$counter.'" data-id="'.$randon_number2.'-'. $key.'">Advance Setting</a></li>
+															</ul>
+														</div>
+													</div>
+													<div class="settingsp full-width setting-'.$randon_number.'-'. $key.'">
+														<div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['.$counter.'][field_name]" value="'.$value['field_name'].'" placeholder="Enter Field Name"></div>
+														<div class="field-required field-group"><label class="f-b-600">Error Message(Optional)</label><input type="text" name="field_data_array['.$counter.'][field_message]" value="'.$value['field_message'].'" placeholder="Enter error message"></div>
+														<div class="field-required field-group"><label class="f-b-600">Required(Optional)</label> <input type="checkbox" name="field_data_array['.$counter.'][check_required]" value="1" '.($value['check_required']==1 ? 'checked' : '').'> </div>
+													</div>
+													<div class="settingsp full-width setting-'.$randon_number2.'-'. $key.' hide">
+														<div class="field-required field-group"><label class="f-b-600">Valid Regular Expresion(Optional)</label><input type="text" name="field_data_array['.$counter.'][field_exp]" value="'.$value['field_exp'].'" placeholder="Valid Regular Expresion"></div>
+														<div class="field-required field-group"><label class="f-b-600">Default Value(Optional)</label><input type="text" placeholder="Default Value" name="field_data_array['.$counter.'][field_default_val]" value="'.$value['field_default_val'].'" class="full-width"></div>
+														<div class="field-required field-group"><label class="f-b-600">Character Lenght(Optional)</label> <input type="text" name="field_data_array['.$counter.'][character_lenght]" value="'.$value['character_lenght'].'"> </div>
+														<div class="field-required field-group"><input type="hidden" name="field_data_array['.$counter.'][field_type]" value="ZipCode"></div>
+													</div>
+												</div>
+											</div>';
+											break;
+											case "Email":
+												$html.='<div class="main-field-content" id="parent-'.$counter.'">
+												<div class="main-title"><span class="label-txt-area">'.$value['field_label'].'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>
+												<div class="fields-layout full-width">
+													<div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'.$counter.'" name="field_data_array['.$counter.'][field_label]" placeholder="Field label" value="'.$value['field_label'].'"></div>
+													<div class="tabs-list full-width">
+														<div class="tab-nav full-width">
+															<ul class="full-width">
+																<li><a href="#" class="active show-hide" data-pid="parent-'.$counter.'" data-id="'.$randon_number.'-'. $key.'">Setting</a></li>
+																<li><a href="#" class="show-hide" data-pid="parent-'.$counter.'" data-id="'.$randon_number2.'-'. $key.'">Advance Setting</a></li>
+															</ul>
+														</div>
+													</div>
+													<div class="settingsp full-width setting-'.$randon_number.'-'. $key.'">
+														<div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['.$counter.'][field_name]" value="'.$value['field_name'].'" placeholder="Enter Field Name"></div>
+														<div class="field-required field-group"><label class="f-b-600">Error Message(Optional)</label><input type="text" name="field_data_array['.$counter.'][field_message]" value="'.$value['field_message'].'" placeholder="Enter error message"></div>
+														<div class="field-required field-group"><label class="f-b-600">Required(Optional)</label> <input type="checkbox" name="field_data_array['.$counter.'][check_required]" value="1" '.($value['check_required']==1 ? 'checked' : '').'> </div>
+													</div>
+													<div class="settingsp full-width setting-'.$randon_number2.'-'. $key.' hide">
+														<div class="field-required field-group"><label class="f-b-600">Valid Regular Expresion(Optional)</label><input type="text" name="field_data_array['.$counter.'][field_exp]" value="'.$value['field_exp'].'" placeholder="Valid Regular Expresion"></div>
+														<div class="field-required field-group"><label class="f-b-600">Default Value(Optional)</label><input type="text" placeholder="Default Value" name="field_data_array['.$counter.'][field_default_val]" value="'.$value['field_default_val'].'" class="full-width"></div>
+														<div class="field-required field-group"><label class="f-b-600">Character Lenght(Optional)</label> <input type="text" name="field_data_array['.$counter.'][character_lenght]" value="'.$value['character_lenght'].'"> </div>
+														<div class="field-required field-group"><input type="hidden" name="field_data_array['.$counter.'][field_type]" value="Email"></div>
+													</div>
+												</div>
+											</div>';
+											break;
+											case "File":
+												$html.='<div class="main-field-content" id="parent-'.$counter.'">
+												<div class="main-title"><span class="label-txt-area">'.$value['field_label'].'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>
+												<div class="fields-layout full-width">
+													<div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'.$counter.'" name="field_data_array['.$counter.'][field_label]" placeholder="Field label" value="'.$value['field_label'].'"></div>
+													<div class="tabs-list full-width">
+														<div class="tab-nav full-width">
+															<ul class="full-width">
+																<li><a href="#" class="active show-hide" data-pid="parent-'.$counter.'" data-id="'.$randon_number.'-'. $key.'">Setting</a></li>
+																<li><a href="#" class="show-hide" data-pid="parent-'.$counter.'" data-id="'.$randon_number2.'-'. $key.'">Advance Setting</a></li>
+															</ul>
+														</div>
+													</div>
+													<div class="settingsp full-width setting-'.$randon_number.'-'. $key.'">
+														<div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['.$counter.'][field_name]" value="'.$value['field_name'].'" placeholder="Enter Field Name"></div>
+														<div class="field-required field-group"><label class="f-b-600">Error Message(Optional)</label><input type="text" name="field_data_array['.$counter.'][field_message]" value="'.$value['field_message'].'" placeholder="Enter error message"></div>
+														<div class="field-required field-group"><label class="f-b-600">Required(Optional)</label> <input type="checkbox" name="field_data_array['.$counter.'][check_required]" value="1" '.($value['check_required']==1 ? 'checked' : '').'> </div>
+													</div>
+													<div class="settingsp full-width setting-'.$randon_number2.'-'. $key.' hide">
+														<div class="field-required field-group"><label class="f-b-600">Max File Size(Optional)</label><input type="number" name="field_data_array['.$counter.'][field_exp]" value="'.$value['field_file_size'].'" placeholder="Enter Max File Size"></div>
+														<div class="field-required field-group"><input type="hidden" name="field_data_array['.$counter.'][field_type]" value="File"></div>
+													</div>
+												</div>
+											</div>';
+											break;
 											default:
 												echo "No More fields here";
 										}
@@ -352,7 +485,8 @@ class WCM_FormMain{
         }
     }
     public function add_my_media_button() {
-        echo '<a href="javascript:;" id="insert-my-media" class="button" onclick="open_media_window()">Add my media</a>';
+		$data="this is testing form my side";
+        echo "<a href='javascript:;' id='insert-my-media' class='button' onclick='open_media_window('".$data."')'>Add my media</a>";
     }
    	
 }

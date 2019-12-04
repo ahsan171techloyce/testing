@@ -21,7 +21,9 @@ class WCM_OptionList{
 						'Email',
 						'Phone',
 						'State',
-						'ZipCode'
+						'ZipCode',
+						'File',
+						'Multiple Files',
 					)
 
 

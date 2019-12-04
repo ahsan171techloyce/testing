@@ -27,18 +27,32 @@ jQuery( function() {
            var counter=jQuery('#couter-check').val();
             var current_type=jQuery(event.target).attr('field-type');
             if(current_type==='Text'){
-               var random = Math.floor(Math.random() * 99999999) + 1; 
+                var random = Math.floor(Math.random() * 99999999) + 1; 
+                var random2 = Math.floor(Math.random() * 99999999) + 1; 
                 var html='<div class="main-field-content" id="parent-'+counter+'">\n\
                             <div class="main-title"><span class="label-txt-area">'+current_type+'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>\n\
-                            <div class="fields-layout">\n\
+                            <div class="fields-layout full-width">\n\
                                 <div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'+counter+'" name="field_data_array['+counter+'][field_label]" placeholder="Field label"></div>\n\
-                                <div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['+counter+'][field_name]" value="field_'+counter+'_'+random+'" placeholder="Enter Field Name"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">Error Message(Optional)</label><input type="text" name="field_data_array['+counter+'][field_message]" placeholder="Enter error message"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">Valid Regular Expresion(Optional)</label><input type="text" name="field_data_array['+counter+'][field_exp]" placeholder="Valid Regular Expresion"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">Default Value(Optional)</label><input type="text" placeholder="Default Value" name="field_data_array['+counter+'][field_default_val]" class="full-width"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">Character Lenght(Optional)</label> <input type="text" name="field_data_array['+counter+'][character_lenght]"> </div>\n\
-								<div class="field-required field-group"><label class="f-b-600">Required(Optional)</label> <input type="checkbox" name="field_data_array['+counter+'][check_required]" value="1" > </div>\n\
-                                <div class="field-required field-group"><input type="hidden" name="field_data_array['+counter+'][field_type]" value="Text"></div></div>\n\
+                                <div class="tabs-list full-width">\n\
+                                        <div class="tab-nav full-width">\n\
+                                                <ul class="full-width">\n\
+													<li><a href="#" class="active show-hide" data-pid="parent-'+counter+'" data-id="'+random+'-'+counter+'">Setting</a></li>\n\
+													<li><a href="#" class="show-hide" data-pid="parent-'+counter+'" data-id="'+random2+'-'+counter+'">Advance Setting</a></li>\n\
+                                                </ul>\n\
+                                        </div>\n\
+                                </div>\n\
+                                <div class="settingsp full-width setting-'+random+'-'+counter+'">\n\
+									<div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['+counter+'][field_name]" value="field_'+counter+'_'+random+'"  placeholder="Enter Field Name"></div>\n\
+									<div class="field-required field-group"><label class="f-b-600">Error Message(Optional)</label><input type="text" name="field_data_array['+counter+'][field_message]"  placeholder="Enter error message"></div>\n\
+									<div class="field-required field-group"><label class="f-b-600">Required(Optional)</label> <input type="checkbox" name="field_data_array['+counter+'][check_required]"> </div>\n\
+                                </div>\n\
+                                <div class="settingsp full-width setting-'+random2+'-'+counter+' hide">\n\
+									<div class="field-required field-group"><label class="f-b-600">Valid Regular Expresion(Optional)</label><input type="text" name="field_data_array['+counter+'][field_exp]"  placeholder="Valid Regular Expresion"></div>\n\
+									<div class="field-required field-group"><label class="f-b-600">Default Value(Optional)</label><input type="text" placeholder="Default Value" name="field_data_array['+counter+'][field_default_val]"  class="full-width"></div>\n\
+									<div class="field-required field-group"><label class="f-b-600">Character Lenght(Optional)</label> <input type="text" name="field_data_array['+counter+'][character_lenght]"> </div>\n\
+									<div class="field-required field-group"><input type="hidden" name="field_data_array['+counter+'][field_type]" value="Text"></div>\n\
+                                </div>\n\
+                            </div>\n\
                         </div>';
                 return jQuery(html);
             }
@@ -106,155 +120,253 @@ jQuery( function() {
 
             }
             else if(current_type==='Number'){
-				var random = Math.floor(Math.random() * 99999999) + 1; 
+               var random = Math.floor(Math.random() * 99999999) + 1; 
+               var random2 = Math.floor(Math.random() * 99999999) + 1; 
                 var html='<div class="main-field-content" id="parent-'+counter+'">\n\
                             <div class="main-title"><span class="label-txt-area">'+current_type+'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>\n\
-                            <div class="fields-layout">\n\
+                            <div class="fields-layout full-width">\n\
                                 <div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'+counter+'" name="field_data_array['+counter+'][field_label]" placeholder="Field label"></div>\n\
-                                <div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['+counter+'][field_name]" value="field_'+counter+'_'+random+'" placeholder="Enter Field Name"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">Error Message(Optional)</label><input type="text" name="field_data_array['+counter+'][field_message]" placeholder="Enter error message"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">Valid Regular Expresion(Optional)</label><input type="text" name="field_data_array['+counter+'][field_exp]" placeholder="Valid Regular Expresion"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">Default Value(Optional)</label><input type="text" placeholder="Default Value" name="field_data_array['+counter+'][field_default_val]" class="full-width"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">Character Lenght(Optional)</label> <input type="text" name="field_data_array['+counter+'][character_lenght]"> </div>\n\
-								<div class="field-required field-group"><label class="f-b-600">Required(Optional)</label> <input type="checkbox" name="field_data_array['+counter+'][check_required]" value="1" > </div>\n\
-                                <div class="field-required field-group"><input type="hidden" name="field_data_array['+counter+'][field_type]" value="Number"></div></div>\n\
-                        </div>';
-                return jQuery(html);
-            }
-            else if(current_type==='Checkboxes'){
-                var random = Math.floor(Math.random() * 99999999) + 1; 
-                var html='<div class="main-field-content" id="parent-'+counter+'">\n\
-                            <div class="main-title"><span class="label-txt-area">'+current_type+'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>\n\
-                            <div class="fields-layout">\n\
-                                <div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'+counter+'" name="field_data_array['+counter+'][field_label]" placeholder="Field label"></div>\n\
-                                <div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['+counter+'][field_name]" value="field_'+counter+'_'+random+'" placeholder="Enter Field Name"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">Error Message(Optional)</label><input type="text" name="field_data_array['+counter+'][field_message]" placeholder="Enter error message"></div>\n\
-								<div class="field-required field-group"><label class="f-b-600">Required(Optional)</label><input type="checkbox" name="field_data_array['+counter+'][check_required]" value="1" ></div>\n\
-                                <div class="field-required field-group"><input type="hidden" name="field_data_array['+counter+'][field_type]" value="Checkboxes"></div>\n\
-                                 <div class="field-required field-group"><input type="hidden" name="field_data_array['+counter+'][option_counter]" class="option-counter" value="0"></div>\n\
-								<div class="field-required field-group append-fields-option">\n\
-                                    <div class="optional-fields-area">\n\
-                                        <div class="field-option-name"><input type="text" placeholder="Enter Label Name" name="field_data_array['+counter+'][field_option][0][option_name]"></div>\n\
-                                        <div class="field-option-val"><input type="text" placeholder="Enter Label Value" name="field_data_array['+counter+'][field_option][0][option_value]"></div>\n\
-                                        <div class="field-option-add-remove"><span class="wcm_add-option" data-mparent="parent-'+counter+'" data-append="append-fields-option" data-counter="'+counter+'" data-type="dropdown" data-counter="'+counter+'">+</span><span data-mparent="parent-'+counter+'" data-append="append-fields-option" data-type="dropdown" class="wcm_remove-option" style="visibility:hidden">-</span></div>\n\
+                                <div class="tabs-list full-width">\n\
+                                        <div class="tab-nav full-width">\n\
+										<ul class="full-width">\n\
+											<li><a href="#" class="active show-hide" data-pid="parent-'+counter+'" data-id="'+random+'-'+counter+'">Setting</a></li>\n\
+											<li><a href="#" class="show-hide" data-pid="parent-'+counter+'" data-id="'+random2+'-'+counter+'">Advance Setting</a></li>\n\
+										</ul>\n\
+									</div>\n\
+							</div>\n\
+							<div class="settingsp full-width setting-'+random+'-'+counter+'">\n\
+									<div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['+counter+'][field_name]" value="field_'+counter+'_'+random+'"  placeholder="Enter Field Name"></div>\n\
+									<div class="field-required field-group"><label class="f-b-600">Error Message(Optional)</label><input type="text" name="field_data_array['+counter+'][field_message]"  placeholder="Enter error message"></div>\n\
+									<div class="field-required field-group"><label class="f-b-600">Required(Optional)</label> <input type="checkbox" name="field_data_array['+counter+'][check_required]"> </div>\n\
+							</div>\n\
+							<div class="settingsp full-width setting-'+random2+'-'+counter+' hide">\n\
+									<div class="field-required field-group"><label class="f-b-600">Valid Regular Expresion(Optional)</label><input type="text" name="field_data_array['+counter+'][field_exp]"  placeholder="Valid Regular Expresion"></div>\n\
+									<div class="field-required field-group"><label class="f-b-600">Default Value(Optional)</label><input type="text" placeholder="Default Value" name="field_data_array['+counter+'][field_default_val]"  class="full-width"></div>\n\
+									<div class="field-required field-group"><label class="f-b-600">Character Lenght(Optional)</label> <input type="text" name="field_data_array['+counter+'][character_lenght]"> </div>\n\
+									<div class="field-required field-group"><input type="hidden" name="field_data_array['+counter+'][field_type]" value="Number"></div>\n\
+							</div>\n\
+						</div>\n\
+					</div>';
+			return jQuery(html);
+		}
+		else if(current_type==='Checkboxes'){
+			var random = Math.floor(Math.random() * 99999999) + 1; 
+			var html='<div class="main-field-content" id="parent-'+counter+'">\n\
+						<div class="main-title"><span class="label-txt-area">'+current_type+'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>\n\
+						<div class="fields-layout">\n\
+							<div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'+counter+'" name="field_data_array['+counter+'][field_label]" placeholder="Field label"></div>\n\
+							<div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['+counter+'][field_name]" value="field_'+counter+'_'+random+'" placeholder="Enter Field Name"></div>\n\
+							<div class="field-required field-group"><label class="f-b-600">Error Message(Optional)</label><input type="text" name="field_data_array['+counter+'][field_message]" placeholder="Enter error message"></div>\n\
+			<div class="field-required field-group"><label class="f-b-600">Required(Optional)</label><input type="checkbox" name="field_data_array['+counter+'][check_required]" value="1" ></div>\n\
+							<div class="field-required field-group"><input type="hidden" name="field_data_array['+counter+'][field_type]" value="Checkboxes"></div>\n\
+							 <div class="field-required field-group"><input type="hidden" name="field_data_array['+counter+'][option_counter]" class="option-counter" value="0"></div>\n\
+			<div class="field-required field-group append-fields-option">\n\
+								<div class="optional-fields-area">\n\
+									<div class="field-option-name"><input type="text" placeholder="Enter Label Name" name="field_data_array['+counter+'][field_option][0][option_name]"></div>\n\
+									<div class="field-option-val"><input type="text" placeholder="Enter Label Value" name="field_data_array['+counter+'][field_option][0][option_value]"></div>\n\
+									<div class="field-option-add-remove"><span class="wcm_add-option" data-mparent="parent-'+counter+'" data-append="append-fields-option" data-counter="'+counter+'" data-type="dropdown" data-counter="'+counter+'">+</span><span data-mparent="parent-'+counter+'" data-append="append-fields-option" data-type="dropdown" class="wcm_remove-option" style="visibility:hidden">-</span></div>\n\
+								</div>\n\
+							</div>\n\
+							</div>\n\
+						</div>';
+			return jQuery(html);
+
+
+		}
+		else if(current_type==='Radio Buttons'){
+			var random = Math.floor(Math.random() * 99999999) + 1; 
+			var html='<div class="main-field-content" id="parent-'+counter+'">\n\
+						<div class="main-title"><span class="label-txt-area">'+current_type+'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>\n\
+						<div class="fields-layout">\n\
+							<div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'+counter+'" name="field_data_array['+counter+'][field_label]" placeholder="Field label"></div>\n\
+							<div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['+counter+'][field_name]" value="field_'+counter+'_'+random+'" placeholder="Enter Field Name"></div>\n\
+							<div class="field-required field-group"><label class="f-b-600">Error Message(Optional)</label><input type="text" name="field_data_array['+counter+'][field_message]" placeholder="Enter error message"></div>\n\
+			<div class="field-required field-group"><label class="f-b-600">Required(Optional)</label><input type="checkbox" name="field_data_array['+counter+'][check_required]" value="1" ></div>\n\
+							<div class="field-required field-group"><input type="hidden" name="field_data_array['+counter+'][field_type]" value="Radio Buttons"></div>\n\
+							<div class="field-required field-group"><input type="hidden" name="field_data_array['+counter+'][option_counter]" class="option-counter" value="0"></div>\n\
+			<div class="field-required field-group append-fields-option">\n\
+								<div class="optional-fields-area">\n\
+								   <div class="field-option-name"><input type="text" placeholder="Enter Label Name" name="field_data_array['+counter+'][field_option][0][option_name]"></div>\n\
+									<div class="field-option-val"><input type="text" placeholder="Enter Label Value" name="field_data_array['+counter+'][field_option][0][option_value]"></div>\n\
+									<div class="field-option-add-remove"><span class="wcm_add-option" data-mparent="parent-'+counter+'" data-append="append-fields-option" data-counter="'+counter+'" data-type="dropdown" data-counter="'+counter+'">+</span><span data-mparent="parent-'+counter+'" data-append="append-fields-option" data-type="dropdown" class="wcm_remove-option" style="visibility:hidden">-</span></div>\n\
+								</div>\n\
+							</div>\n\
+							</div>\n\
+						</div>';
+			return jQuery(html);
+		}
+		else if(current_type==='Hidden'){
+			var random = Math.floor(Math.random() * 99999999) + 1; 
+			var html='<div class="main-field-content" id="parent-'+counter+'">\n\
+						<div class="main-title"><span class="label-txt-area">'+current_type+'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>\n\
+						<div class="fields-layout">\n\
+							<div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'+counter+'" name="field_data_array['+counter+'][field_label]" placeholder="Field label"></div>\n\
+							<div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['+counter+'][field_name]" value="field_'+counter+'_'+random+'" placeholder="Enter Field Name"></div>\n\
+							<div class="field-required field-group"><label class="f-b-600">Default Value(Optional)</label><input type="text" placeholder="Default Value" name="field_data_array['+counter+'][field_default_val]" class="full-width"></div>\n\
+							<div class="field-required field-group"><label class="f-b-600">Character Lenght(Optional)</label> <input type="text" name="field_data_array['+counter+'][character_lenght]"> </div>\n\
+							<div class="field-label field-group"><label class="f-b-600">Enter Parameter(optional)</label><input type="text" class="label-text" data-parent="parent-'+counter+'" name="field_data_array['+counter+'][field_dynamic_parameter]" placeholder="Enter Parameter"></div>\n\
+			<div class="field-required field-group"><input type="hidden" name="field_data_array['+counter+'][field_type]" value="Hidden"></div></div>\n\
+					</div>';
+			return jQuery(html);
+		}
+		else if(current_type==='HTML'){
+			var random = Math.floor(Math.random() * 99999999) + 1; 
+			var html='<div class="main-field-content" id="parent-'+counter+'">\n\
+						<div class="main-title"><span class="label-txt-area">'+current_type+'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>\n\
+						<div class="fields-layout">\n\
+							<div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'+counter+'" name="field_data_array['+counter+'][field_label]" placeholder="Field label"></div>\n\
+							<div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['+counter+'][field_name]" value="field_'+counter+'_'+random+'" placeholder="Enter Field Name"></div>\n\
+							<div class="field-required field-group"><input type="hidden" name="field_data_array['+counter+'][field_type]" value="HTML"></div>\n\
+							<div class="field-required field-group"><label class="f-b-600">HTML</label><textarea name="field_data_array['+counter+'][field_default_val]" class="full-width"></textarea></div></div>\n\
+					</div>';
+			return jQuery(html);
+
+		}
+else if(current_type==='Email'){
+		   var random = Math.floor(Math.random() * 99999999) + 1; 
+			var random2 = Math.floor(Math.random() * 99999999) + 1; 
+			var html='<div class="main-field-content" id="parent-'+counter+'">\n\
+						<div class="main-title"><span class="label-txt-area">'+current_type+'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>\n\
+						<div class="fields-layout full-width">\n\
+							<div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'+counter+'" name="field_data_array['+counter+'][field_label]" placeholder="Field label"></div>\n\
+							<div class="tabs-list full-width">\n\
+									<div class="tab-nav full-width">\n\
+										<ul class="full-width">\n\
+											<li><a href="#" class="active show-hide" data-pid="parent-'+counter+'" data-id="'+random+'-'+counter+'">Setting</a></li>\n\
+											<li><a href="#" class="show-hide" data-pid="parent-'+counter+'" data-id="'+random2+'-'+counter+'">Advance Setting</a></li>\n\
+										</ul>\n\
                                     </div>\n\
                                 </div>\n\
+                                <div class="settingsp full-width setting-'+random+'-'+counter+'">\n\
+                                        <div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['+counter+'][field_name]" value="field_'+counter+'_'+random+'"  placeholder="Enter Field Name"></div>\n\
+                                        <div class="field-required field-group"><label class="f-b-600">Error Message(Optional)</label><input type="text" name="field_data_array['+counter+'][field_message]"  placeholder="Enter error message"></div>\n\
+                                        <div class="field-required field-group"><label class="f-b-600">Required(Optional)</label> <input type="checkbox" name="field_data_array['+counter+'][check_required]"> </div>\n\
                                 </div>\n\
-                            </div>';
+                                <div class="settingsp full-width setting-'+random2+'-'+counter+' hide">\n\
+                                        <div class="field-required field-group"><label class="f-b-600">Valid Regular Expresion(Optional)</label><input type="text" name="field_data_array['+counter+'][field_exp]"  placeholder="Valid Regular Expresion"></div>\n\
+                                        <div class="field-required field-group"><label class="f-b-600">Default Value(Optional)</label><input type="text" placeholder="Default Value" name="field_data_array['+counter+'][field_default_val]"  class="full-width"></div>\n\
+                                        <div class="field-required field-group"><label class="f-b-600">Character Lenght(Optional)</label> <input type="text" name="field_data_array['+counter+'][character_lenght]"> </div>\n\
+                                        <div class="field-required field-group"><input type="hidden" name="field_data_array['+counter+'][field_type]" value="Email"></div>\n\
+                                </div>\n\
+                            </div>\n\
+                        </div>';
                 return jQuery(html);
-
-
             }
-            else if(current_type==='Radio Buttons'){
-                var random = Math.floor(Math.random() * 99999999) + 1; 
+	else if(current_type==='Phone'){
+               var random = Math.floor(Math.random() * 99999999) + 1; 
+                var random2 = Math.floor(Math.random() * 99999999) + 1; 
                 var html='<div class="main-field-content" id="parent-'+counter+'">\n\
                             <div class="main-title"><span class="label-txt-area">'+current_type+'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>\n\
-                            <div class="fields-layout">\n\
+                            <div class="fields-layout full-width">\n\
                                 <div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'+counter+'" name="field_data_array['+counter+'][field_label]" placeholder="Field label"></div>\n\
-                                <div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['+counter+'][field_name]" value="field_'+counter+'_'+random+'" placeholder="Enter Field Name"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">Error Message(Optional)</label><input type="text" name="field_data_array['+counter+'][field_message]" placeholder="Enter error message"></div>\n\
-								                                <div class="field-required field-group"><label class="f-b-600">Required(Optional)</label><input type="checkbox" name="field_data_array['+counter+'][check_required]" value="1" ></div>\n\
-                                <div class="field-required field-group"><input type="hidden" name="field_data_array['+counter+'][field_type]" value="Radio Buttons"></div>\n\
-                                <div class="field-required field-group"><input type="hidden" name="field_data_array['+counter+'][option_counter]" class="option-counter" value="0"></div>\n\
-								<div class="field-required field-group append-fields-option">\n\
-                                    <div class="optional-fields-area">\n\
-                                       <div class="field-option-name"><input type="text" placeholder="Enter Label Name" name="field_data_array['+counter+'][field_option][0][option_name]"></div>\n\
-                                        <div class="field-option-val"><input type="text" placeholder="Enter Label Value" name="field_data_array['+counter+'][field_option][0][option_value]"></div>\n\
-                                        <div class="field-option-add-remove"><span class="wcm_add-option" data-mparent="parent-'+counter+'" data-append="append-fields-option" data-counter="'+counter+'" data-type="dropdown" data-counter="'+counter+'">+</span><span data-mparent="parent-'+counter+'" data-append="append-fields-option" data-type="dropdown" class="wcm_remove-option" style="visibility:hidden">-</span></div>\n\
-                                    </div>\n\
+                                <div class="tabs-list full-width">\n\
+                                        <div class="tab-nav full-width">\n\
+											<ul class="full-width">\n\
+												<li><a href="#" class="active show-hide" data-pid="parent-'+counter+'" data-id="'+random+'-'+counter+'">Setting</a></li>\n\
+												<li><a href="#" class="show-hide" data-pid="parent-'+counter+'" data-id="'+random2+'-'+counter+'">Advance Setting</a></li>\n\
+											</ul>\n\
+                                        </div>\n\
                                 </div>\n\
+                                <div class="settingsp full-width setting-'+random+'-'+counter+'">\n\
+                                        <div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['+counter+'][field_name]" value="field_'+counter+'_'+random+'"  placeholder="Enter Field Name"></div>\n\
+                                        <div class="field-required field-group"><label class="f-b-600">Error Message(Optional)</label><input type="text" name="field_data_array['+counter+'][field_message]"  placeholder="Enter error message"></div>\n\
+                                        <div class="field-required field-group"><label class="f-b-600">Required(Optional)</label> <input type="checkbox" name="field_data_array['+counter+'][check_required]"> </div>\n\
                                 </div>\n\
-                            </div>';
+                                <div class="settingsp full-width setting-'+random2+'-'+counter+' hide">\n\
+                                        <div class="field-required field-group"><label class="f-b-600">Valid Regular Expresion(Optional)</label><input type="text" name="field_data_array['+counter+'][field_exp]"  placeholder="Valid Regular Expresion"></div>\n\
+                                        <div class="field-required field-group"><label class="f-b-600">Default Value(Optional)</label><input type="text" placeholder="Default Value" name="field_data_array['+counter+'][field_default_val]"  class="full-width"></div>\n\
+                                        <div class="field-required field-group"><label class="f-b-600">Character Lenght(Optional)</label> <input type="text" name="field_data_array['+counter+'][character_lenght]"> </div>\n\
+                                        <div class="field-required field-group"><input type="hidden" name="field_data_array['+counter+'][field_type]" value="Phone"></div>\n\
+                                </div>\n\
+                            </div>\n\
+                        </div>';
                 return jQuery(html);
             }
-            else if(current_type==='Hidden'){
+	else if(current_type==='State'){
+               var random = Math.floor(Math.random() * 99999999) + 1; 
+                var random2 = Math.floor(Math.random() * 99999999) + 1; 
+                var html='<div class="main-field-content" id="parent-'+counter+'">\n\
+                            <div class="main-title"><span class="label-txt-area">'+current_type+'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>\n\
+                            <div class="fields-layout full-width">\n\
+                                <div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'+counter+'" name="field_data_array['+counter+'][field_label]" placeholder="Field label"></div>\n\
+                                <div class="tabs-list full-width">\n\
+                                        <div class="tab-nav full-width">\n\
+											<ul class="full-width">\n\
+												<li><a href="#" class="active show-hide" data-pid="parent-'+counter+'" data-id="'+random+'-'+counter+'">Setting</a></li>\n\
+												<li><a href="#" class="show-hide" data-pid="parent-'+counter+'" data-id="'+random2+'-'+counter+'">Advance Setting</a></li>\n\
+											</ul>\n\
+                                        </div>\n\
+                                </div>\n\
+                                <div class="settingsp full-width setting-'+random+'-'+counter+'">\n\
+                                        <div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['+counter+'][field_name]" value="field_'+counter+'_'+random+'"  placeholder="Enter Field Name"></div>\n\
+                                        <div class="field-required field-group"><label class="f-b-600">Error Message(Optional)</label><input type="text" name="field_data_array['+counter+'][field_message]"  placeholder="Enter error message"></div>\n\
+                                        <div class="field-required field-group"><label class="f-b-600">Required(Optional)</label> <input type="checkbox" name="field_data_array['+counter+'][check_required]"> </div>\n\
+                                </div>\n\
+                                <div class="settingsp full-width setting-'+random2+'-'+counter+' hide">\n\
+                                        <div class="field-required field-group"><label class="f-b-600">Valid Regular Expresion(Optional)</label><input type="text" name="field_data_array['+counter+'][field_exp]"  placeholder="Valid Regular Expresion"></div>\n\
+                                        <div class="field-required field-group"><label class="f-b-600">Default Value(Optional)</label><input type="text" placeholder="Default Value" name="field_data_array['+counter+'][field_default_val]"  class="full-width"></div>\n\
+                                        <div class="field-required field-group"><label class="f-b-600">Character Lenght(Optional)</label> <input type="text" name="field_data_array['+counter+'][character_lenght]"> </div>\n\
+                                        <div class="field-required field-group"><input type="hidden" name="field_data_array['+counter+'][field_type]" value="State"></div>\n\
+                                </div>\n\
+                            </div>\n\
+                        </div>';
+                return jQuery(html);
+            }
+            else if(current_type==='ZipCode'){
 				var random = Math.floor(Math.random() * 99999999) + 1; 
+                var random2 = Math.floor(Math.random() * 99999999) + 1; 
                 var html='<div class="main-field-content" id="parent-'+counter+'">\n\
                             <div class="main-title"><span class="label-txt-area">'+current_type+'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>\n\
-                            <div class="fields-layout">\n\
+                            <div class="fields-layout full-width">\n\
                                 <div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'+counter+'" name="field_data_array['+counter+'][field_label]" placeholder="Field label"></div>\n\
-                                <div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['+counter+'][field_name]" value="field_'+counter+'_'+random+'" placeholder="Enter Field Name"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">Default Value(Optional)</label><input type="text" placeholder="Default Value" name="field_data_array['+counter+'][field_default_val]" class="full-width"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">Character Lenght(Optional)</label> <input type="text" name="field_data_array['+counter+'][character_lenght]"> </div>\n\
-                                <div class="field-label field-group"><label class="f-b-600">Enter Parameter(optional)</label><input type="text" class="label-text" data-parent="parent-'+counter+'" name="field_data_array['+counter+'][field_dynamic_parameter]" placeholder="Enter Parameter"></div>\n\
-								<div class="field-required field-group"><input type="hidden" name="field_data_array['+counter+'][field_type]" value="Hidden"></div></div>\n\
+                                <div class="tabs-list full-width">\n\
+                                        <div class="tab-nav full-width">\n\
+											<ul class="full-width">\n\
+												<li><a href="#" class="active show-hide" data-pid="parent-'+counter+'" data-id="'+random+'-'+counter+'">Setting</a></li>\n\
+												<li><a href="#" class="show-hide" data-pid="parent-'+counter+'" data-id="'+random2+'-'+counter+'">Advance Setting</a></li>\n\
+											</ul>\n\
+                                        </div>\n\
+                                </div>\n\
+                                <div class="settingsp full-width setting-'+random+'-'+counter+'">\n\
+                                        <div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['+counter+'][field_name]" value="field_'+counter+'_'+random+'"  placeholder="Enter Field Name"></div>\n\
+                                        <div class="field-required field-group"><label class="f-b-600">Error Message(Optional)</label><input type="text" name="field_data_array['+counter+'][field_message]"  placeholder="Enter error message"></div>\n\
+                                        <div class="field-required field-group"><label class="f-b-600">Required(Optional)</label> <input type="checkbox" name="field_data_array['+counter+'][check_required]"> </div>\n\
+                                </div>\n\
+                                <div class="settingsp full-width setting-'+random2+'-'+counter+' hide">\n\
+                                        <div class="field-required field-group"><label class="f-b-600">Valid Regular Expresion(Optional)</label><input type="text" name="field_data_array['+counter+'][field_exp]"  placeholder="Valid Regular Expresion"></div>\n\
+                                        <div class="field-required field-group"><label class="f-b-600">Default Value(Optional)</label><input type="text" placeholder="Default Value" name="field_data_array['+counter+'][field_default_val]"  class="full-width"></div>\n\
+                                        <div class="field-required field-group"><label class="f-b-600">Character Lenght(Optional)</label> <input type="text" name="field_data_array['+counter+'][character_lenght]"> </div>\n\
+                                        <div class="field-required field-group"><input type="hidden" name="field_data_array['+counter+'][field_type]" value="ZipCode"></div>\n\
+                                </div>\n\
+                            </div>\n\
                         </div>';
                 return jQuery(html);
             }
-            else if(current_type==='HTML'){
+			else if(current_type==='File'){
 				var random = Math.floor(Math.random() * 99999999) + 1; 
+                var random2 = Math.floor(Math.random() * 99999999) + 1; 
                 var html='<div class="main-field-content" id="parent-'+counter+'">\n\
                             <div class="main-title"><span class="label-txt-area">'+current_type+'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>\n\
-                            <div class="fields-layout">\n\
+                            <div class="fields-layout full-width">\n\
                                 <div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'+counter+'" name="field_data_array['+counter+'][field_label]" placeholder="Field label"></div>\n\
-                                <div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['+counter+'][field_name]" value="field_'+counter+'_'+random+'" placeholder="Enter Field Name"></div>\n\
-                                <div class="field-required field-group"><input type="hidden" name="field_data_array['+counter+'][field_type]" value="HTML"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">HTML</label><textarea name="field_data_array['+counter+'][field_default_val]" class="full-width"></textarea></div></div>\n\
-                        </div>';
-                return jQuery(html);
-
-            }
-			else if(current_type==='Email'){
-               var random = Math.floor(Math.random() * 99999999) + 1; 
-                var html='<div class="main-field-content" id="parent-'+counter+'">\n\
-                            <div class="main-title"><span class="label-txt-area">'+current_type+'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>\n\
-                            <div class="fields-layout">\n\
-                                <div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'+counter+'" name="field_data_array['+counter+'][field_label]" placeholder="Field label"></div>\n\
-                                <div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['+counter+'][field_name]" value="field_'+counter+'_'+random+'" placeholder="Enter Field Name"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">Error Message(Optional)</label><input type="text" name="field_data_array['+counter+'][field_message]" placeholder="Enter error message"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">Valid Regular Expresion(Optional)</label><input type="text" name="field_data_array['+counter+'][field_exp]" placeholder="Valid Regular Expresion"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">Default Value(Optional)</label><input type="text" placeholder="Default Value" name="field_data_array['+counter+'][field_default_val]" class="full-width"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">Character Lenght(Optional)</label> <input type="text" name="field_data_array['+counter+'][character_lenght]"> </div>\n\
-								<div class="field-required field-group"><label class="f-b-600">Required(Optional)</label> <input type="checkbox" name="field_data_array['+counter+'][check_required]" value="1" > </div>\n\
-                                <div class="field-required field-group"><input type="hidden" name="field_data_array['+counter+'][field_type]" value="Email"></div></div>\n\
-                        </div>';
-                return jQuery(html);
-            }
-			else if(current_type==='Phone'){
-               var random = Math.floor(Math.random() * 99999999) + 1; 
-                var html='<div class="main-field-content" id="parent-'+counter+'">\n\
-                            <div class="main-title"><span class="label-txt-area">'+current_type+'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>\n\
-                            <div class="fields-layout">\n\
-                                <div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'+counter+'" name="field_data_array['+counter+'][field_label]" placeholder="Field label"></div>\n\
-                                <div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['+counter+'][field_name]" value="field_'+counter+'_'+random+'" placeholder="Enter Field Name"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">Error Message(Optional)</label><input type="text" name="field_data_array['+counter+'][field_message]" placeholder="Enter error message"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">Valid Regular Expresion(Optional)</label><input type="text" name="field_data_array['+counter+'][field_exp]" placeholder="Valid Regular Expresion"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">Default Value(Optional)</label><input type="text" placeholder="Default Value" name="field_data_array['+counter+'][field_default_val]" class="full-width"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">Character Lenght(Optional)</label> <input type="text" name="field_data_array['+counter+'][character_lenght]"> </div>\n\
-								<div class="field-required field-group"><label class="f-b-600">Required(Optional)</label> <input type="checkbox" name="field_data_array['+counter+'][check_required]" value="1" > </div>\n\
-                                <div class="field-required field-group"><input type="hidden" name="field_data_array['+counter+'][field_type]" value="Phone"></div></div>\n\
-                        </div>';
-                return jQuery(html);
-            }
-			else if(current_type==='State'){
-               var random = Math.floor(Math.random() * 99999999) + 1; 
-                var html='<div class="main-field-content" id="parent-'+counter+'">\n\
-                            <div class="main-title"><span class="label-txt-area">'+current_type+'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>\n\
-                            <div class="fields-layout">\n\
-                                <div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'+counter+'" name="field_data_array['+counter+'][field_label]" placeholder="Field label"></div>\n\
-                                <div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['+counter+'][field_name]" value="field_'+counter+'_'+random+'" placeholder="Enter Field Name"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">Error Message(Optional)</label><input type="text" name="field_data_array['+counter+'][field_message]" placeholder="Enter error message"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">Valid Regular Expresion(Optional)</label><input type="text" name="field_data_array['+counter+'][field_exp]" placeholder="Valid Regular Expresion"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">Default Value(Optional)</label><input type="text" placeholder="Default Value" name="field_data_array['+counter+'][field_default_val]" class="full-width"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">Character Lenght(Optional)</label> <input type="text" name="field_data_array['+counter+'][character_lenght]"> </div>\n\
-								<div class="field-required field-group"><label class="f-b-600">Required(Optional)</label> <input type="checkbox" name="field_data_array['+counter+'][check_required]" value="1" > </div>\n\
-                                <div class="field-required field-group"><input type="hidden" name="field_data_array['+counter+'][field_type]" value="State"></div></div>\n\
-                        </div>';
-                return jQuery(html);
-            }
-			else if(current_type==='ZipCode'){
-               var random = Math.floor(Math.random() * 99999999) + 1; 
-                var html='<div class="main-field-content" id="parent-'+counter+'">\n\
-                            <div class="main-title"><span class="label-txt-area">'+current_type+'</span><div class="align-right"><span class="dashicons dashicons-arrow-down"></span></div></div>\n\
-                            <div class="fields-layout">\n\
-                                <div class="field-label field-group"><label class="f-b-600">Enter Lable Name</label><input type="text" class="label-text" onkeyup="label_field_value(this);" data-parent="parent-'+counter+'" name="field_data_array['+counter+'][field_label]" placeholder="Field label"></div>\n\
-                                <div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['+counter+'][field_name]" value="field_'+counter+'_'+random+'" placeholder="Enter Field Name"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">Error Message(Optional)</label><input type="text" name="field_data_array['+counter+'][field_message]" placeholder="Enter error message"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">Valid Regular Expresion(Optional)</label><input type="text" name="field_data_array['+counter+'][field_exp]" placeholder="Valid Regular Expresion"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">Default Value(Optional)</label><input type="text" placeholder="Default Value" name="field_data_array['+counter+'][field_default_val]" class="full-width"></div>\n\
-                                <div class="field-required field-group"><label class="f-b-600">Character Lenght(Optional)</label> <input type="text" name="field_data_array['+counter+'][character_lenght]"> </div>\n\
-								<div class="field-required field-group"><label class="f-b-600">Required(Optional)</label> <input type="checkbox" name="field_data_array['+counter+'][check_required]" value="1" > </div>\n\
-                                <div class="field-required field-group"><input type="hidden" name="field_data_array['+counter+'][field_type]" value="ZipCode"></div></div>\n\
+                                <div class="tabs-list full-width">\n\
+                                        <div class="tab-nav full-width">\n\
+											<ul class="full-width">\n\
+												<li><a href="#" class="active show-hide" data-pid="parent-'+counter+'" data-id="'+random+'-'+counter+'">Setting</a></li>\n\
+												<li><a href="#" class="show-hide" data-pid="parent-'+counter+'" data-id="'+random2+'-'+counter+'">Advance Setting</a></li>\n\
+											</ul>\n\
+                                        </div>\n\
+                                </div>\n\
+                                <div class="settingsp full-width setting-'+random+'-'+counter+'">\n\
+                                        <div class="field-name field-group"><label class="f-b-600">Enter Field Name</label><input type="text" name="field_data_array['+counter+'][field_name]" value="field_'+counter+'_'+random+'"  placeholder="Enter Field Name"></div>\n\
+                                        <div class="field-required field-group"><label class="f-b-600">Error Message(Optional)</label><input type="text" name="field_data_array['+counter+'][field_message]"  placeholder="Enter error message"></div>\n\
+                                        <div class="field-required field-group"><label class="f-b-600">Required(Optional)</label> <input type="checkbox" name="field_data_array['+counter+'][check_required]"> </div>\n\
+                                </div>\n\
+                                <div class="settingsp full-width setting-'+random2+'-'+counter+' hide">\n\
+                                        <div class="field-required field-group"><label class="f-b-600">Max File Size(Optional)</label><input type="number" name="field_data_array['+counter+'][field_file_size]"  placeholder="Enter Max File Size"></div>\n\
+                                        <div class="field-required field-group"><input type="hidden" name="field_data_array['+counter+'][field_type]" value="File"></div>\n\
+                                </div>\n\
+                            </div>\n\
                         </div>';
                 return jQuery(html);
             }
@@ -262,7 +374,6 @@ jQuery( function() {
                 //return jQuery( "<li class='ui-state-default'><input type='text'></li>" );
             }
         },
-	  
 	  stop: function( event, ui ) {
 		jQuery(event.target).addClass("active-fields");
         var current_couter=jQuery('#couter-check').val();
@@ -374,7 +485,7 @@ function label_field_value(obj){
     var parentID=obj.getAttribute('data-parent');
     jQuery('#'+parentID+' .label-txt-area').text(obj.value);
 }
-function open_media_window() {
-    wp.media.editor.insert('this is testing here');
+function open_media_window(data) {
+    wp.media.editor.insert(data);
         
 }
