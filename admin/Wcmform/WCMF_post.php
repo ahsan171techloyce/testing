@@ -5,7 +5,7 @@ class WCMF_post{
 
         add_action('admin_menu', array($this,'WCMF_form_menu_add_pages'));
         add_action( 'init', array($this,'WCMF_create_form_post_type'),10);
-        add_action('add_meta_boxes', array($this,'WCM_create_form_meta_box'));
+        add_action('add_meta_boxes', array($this,'WCMF_create_form_meta_box'));
         add_action('save_post', array($this,'WCMF_create_form_meta_box_save_postdata'));
         add_action('media_buttons', array($this,'WCMF_add_my_media_button'));
         
