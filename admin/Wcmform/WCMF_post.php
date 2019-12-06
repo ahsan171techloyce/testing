@@ -470,30 +470,46 @@ class WCMF_post{
     
     
     public function show_WCMF_create_frontend_html_form_meta_box(){
-        wp_editor( 'Please publish form first then add html structure here', 'mettaabox_ID', $settings = array('textarea_name'=>'MyInputNAME') );
-    }
+		global $post;
+        $wcmf_fileds_list=get_post_meta($post->ID,'wcmf_fileds_list',true);
+	
+		$editor_value=(!empty( $wcmf_fileds_list)) ? $wcmf_fileds_list : 'Please publish form first then add html structure here';
+        wp_editor( $editor_value, 'wcmf_fileds11' );
+		
+	
+	}
     public function WCMF_create_form_meta_box_save_postdata($post_id){
         
-		// echo '<pre>';
-		// print_r($_POST['field_data_array']);
-		// die;
 		if (array_key_exists('wcm_form_nonce', $_POST)) {
+			
            $couter= $_POST['counter'];
+           $wcmf_fileds_list= $_POST['wcmf_fileds11'];
+		
            $field_data_array=$_POST['field_data_array'];
            update_post_meta($post_id,'field_data_array',maybe_serialize($field_data_array));
            update_post_meta($post_id, 'counter',$couter);
+           update_post_meta($post_id, 'wcmf_fileds_list',$wcmf_fileds_list);
+		  
         }
     }
+	
+	/****************************************************
+		@@ Show form fields in dropdown above editor
+	****************************************************/
     public function WCMF_add_my_media_button() {
 		global $post;
         $field_data_array=get_post_meta($post->ID,'field_data_array',true);
         $field_data_array=maybe_unserialize($field_data_array);
-		// echo '<pre>';
-		// print_r($post);
-		// die;
-		$data="'this is testing form my side'";
-        echo '<a href="javascript:;" id="insert-my-media" class="button" onclick="open_media_window('.$data.')">Add my media</a>';
-    }
+		
+		$option='<option value="">Select WCMF Fields</option>';
+		if(!empty($field_data_array)){
+			foreach($field_data_array as $key => $single_arr){
+			$option.='<option value="'.'['.$single_arr['field_label'].' {'.$key.'}]">'.$single_arr['field_label'].'</option>';
+			}
+			echo '<select id="wcmf-form-fields-shortcode">'.$option.'</select>';
+		}
+		
+	}
    	
 }
 new WCMF_post;

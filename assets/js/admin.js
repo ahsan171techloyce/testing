@@ -475,6 +475,17 @@ else if(current_type==='Email'){
     });
 	
 	
+	/****************************************************
+		@@ DropDown to add fields into editor
+	*************************************************/
+	jQuery('#wcmf-form-fields-shortcode').on('change', function() {
+		if(this.value!=='')
+			wp.media.editor.insert(this.value);
+		
+	});
+	
+	
+	
 } );
 /*
  * @Get label field value and put into main title
@@ -485,7 +496,4 @@ function label_field_value(obj){
     var parentID=obj.getAttribute('data-parent');
     jQuery('#'+parentID+' .label-txt-area').text(obj.value);
 }
-function open_media_window(data) {
-    wp.media.editor.insert(data);
-        
-}
+
