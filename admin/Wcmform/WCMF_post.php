@@ -1,27 +1,27 @@
 <?php
-require_once(PLUGIN_ROOT_DIR.'/WCM_OptionList.php' );
-class WCM_FormMain{
+require_once(PLUGIN_ROOT_DIR.'/WCM_optionlist.php' );
+class WCMF_post{
     public function __construct(){
 
-        add_action('admin_menu', array($this,'WCM_form_menu_add_pages'));
-        add_action( 'init', array($this,'WCM_create_form_post_type'),10);
+        add_action('admin_menu', array($this,'WCMF_form_menu_add_pages'));
+        add_action( 'init', array($this,'WCMF_create_form_post_type'),10);
         add_action('add_meta_boxes', array($this,'WCM_create_form_meta_box'));
-        add_action('save_post', array($this,'WCM_create_form_meta_box_save_postdata'));
-        add_action('media_buttons', array($this,'add_my_media_button'));
+        add_action('save_post', array($this,'WCMF_create_form_meta_box_save_postdata'));
+        add_action('media_buttons', array($this,'WCMF_add_my_media_button'));
         
     }
 
     /*
     * @Fucntion to create main menu page
     */
-    public function WCM_form_menu_add_pages() {
+    public function WCMF_form_menu_add_pages() {
         add_submenu_page( 'WCM-dashbord', 'All Forms', 'All Forms', 'manage_options', 'edit.php?post_type=wcm_forms', NULL);
     }
     /*
      * @Register custom post type
      * Show all forms
      */
-    public function WCM_create_form_post_type(){
+    public function WCMF_create_form_post_type(){
         $labels = array(
             'name'               => _x( 'Forms', 'post type general name', 'WCM' ),
             'singular_name'      => _x( 'Form', 'post type singular name', 'WCM' ),
@@ -58,11 +58,11 @@ class WCM_FormMain{
     }
     
     //making the meta box (Note: meta box != custom meta field)
-    public function WCM_create_form_meta_box() {
+    public function WCMF_create_form_meta_box() {
        add_meta_box(
            'WCM_form_create_area', // $id
            'Create Form', // $title
-           array($this,'show_WCM_create_form_meta_box'),  // $callback
+           array($this,'show_WCMF_create_form_meta_box'),  // $callback
            'wcm_forms',                 // $page
            'normal',                  // $context
            'high'                     // $priority
@@ -70,14 +70,14 @@ class WCM_FormMain{
        add_meta_box(
            'WCM_form_html_structure_create_area', // $id
            'Add Html Structure', // $title
-           array($this,'show_WCM_create_frontend_html_form_meta_box'),  // $callback
+           array($this,'show_WCMF_create_frontend_html_form_meta_box'),  // $callback
            'wcm_forms',                 // $page
            'normal',                  // $context
            'low'                     // $priority
        );
     }
 
-    function show_WCM_create_form_meta_box() {
+    function show_WCMF_create_form_meta_box() {
         global $post;
         $field_data_array=get_post_meta($post->ID,'field_data_array',true);
 		
@@ -89,7 +89,7 @@ class WCM_FormMain{
 		// die;
         wp_nonce_field( basename( __FILE__ ), 'wcm_form_nonce' );
         //$OptionList_obj=new WCM_OptionList;
-        $OptionList_obj_dragable=WCM_OptionList::WCM_form_menu_dragable_option_array();
+        $OptionList_obj_dragable=WCM_optionlist::WCM_form_menu_dragable_option_array();
 
         $html.='<div class="wcm-form-layout">';
                 $html.='<div class="wcm-formbox wcm-form-layout-left">';
@@ -469,10 +469,10 @@ class WCM_FormMain{
     }
     
     
-    public function show_WCM_create_frontend_html_form_meta_box(){
+    public function show_WCMF_create_frontend_html_form_meta_box(){
         wp_editor( 'Please publish form first then add html structure here', 'mettaabox_ID', $settings = array('textarea_name'=>'MyInputNAME') );
     }
-    public function WCM_create_form_meta_box_save_postdata($post_id){
+    public function WCMF_create_form_meta_box_save_postdata($post_id){
         
 		// echo '<pre>';
 		// print_r($_POST['field_data_array']);
@@ -484,10 +484,16 @@ class WCM_FormMain{
            update_post_meta($post_id, 'counter',$couter);
         }
     }
-    public function add_my_media_button() {
-		$data="this is testing form my side";
-        echo "<a href='javascript:;' id='insert-my-media' class='button' onclick='open_media_window('".$data."')'>Add my media</a>";
+    public function WCMF_add_my_media_button() {
+		global $post;
+        $field_data_array=get_post_meta($post->ID,'field_data_array',true);
+        $field_data_array=maybe_unserialize($field_data_array);
+		// echo '<pre>';
+		// print_r($post);
+		// die;
+		$data="'this is testing form my side'";
+        echo '<a href="javascript:;" id="insert-my-media" class="button" onclick="open_media_window('.$data.')">Add my media</a>';
     }
    	
 }
-new WCM_FormMain;
+new WCMF_post;

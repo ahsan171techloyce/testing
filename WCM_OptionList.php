@@ -1,5 +1,5 @@
 <?php
-class WCM_OptionList{
+class WCM_optionlist{
 	
     /*
     * @Fucntion to create main option

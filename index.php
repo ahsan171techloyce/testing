@@ -11,6 +11,7 @@ Domain Path: /languages
 License:     GPL2
 */
 define( 'PLUGIN_ROOT_DIR', plugin_dir_path( __FILE__ ) );
+define( 'PLUGIN_POST_TYPE', 'wcm_forms' );
 class WCM_Main{
 
   // Constructor
@@ -58,7 +59,8 @@ class WCM_Main{
 
 }
 new WCM_Main;
-require_once(dirname( __FILE__ ) . '/script-class.php' );
-require_once(dirname( __FILE__ ) . '/admin/FormClass/WCM_FormMain.php' );
+require_once(dirname( __FILE__ ) . '/WCM_script.php' );
+require_once(dirname( __FILE__ ) . '/admin/WcmForm/WCMF_post.php' );
+require_once(dirname( __FILE__ ) . '/admin/WcmForm/WCMF_hooks.php' );
 //require_once(dirname( __FILE__ ) . '/admin/FormClass/WCM_FormMainAjax.php' );
 
